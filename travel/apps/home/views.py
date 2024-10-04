@@ -12,3 +12,12 @@ class AboutPageView(TemplateView):
 class ContactPageView(TemplateView):
     template_name = 'pages/contact.html'
 
+class DestinationPageView(TemplateView):
+    template_name = 'pages/destination.html'
+
+class ServicePageView(TemplateView):
+    template_name = 'pages/service.html'
+
+class PackagePageView(TemplateView):
+    template_name = 'pages/package.html'
+
