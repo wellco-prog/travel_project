@@ -36,7 +36,7 @@ class User(AbstractUser):
     gender = models.CharField('Пол', choices=GENDER_CHOICE, default='male')
     about = models.TextField('О себе', blank=True, null=True)
     # fav_movies = models.ManyToManyField('film.Film', related_name='favorite_film')
-    friend = models.ManyToManyField('self')
+    # friend = models.ManyToManyField('self')
     objects = UserManager()
 
     def __str__(self):

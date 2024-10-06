@@ -67,7 +67,7 @@
     <div class="container-fluid position-relative nav-bar p-0">
         <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
             <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
-                <a href="" class="navbar-brand">
+                <a href="{% url 'home' %}" class="navbar-brand">
                     <h1 class="m-0 text-primary"><span class="text-dark">TRAVEL</span>ER</h1>
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -76,20 +76,22 @@
                 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                     <div id="nav-menu" class="navbar-nav ml-auto py-0">
                         <a href="{% url 'home' %}" class="nav-item nav-link">Home</a>
-                        <a href="{% url 'about' %}" class="nav-item nav-link">About</a>
-                        <a href="{% url 'service' %}" class="nav-item nav-link">Services</a>
+                        <a href="{% url 'destination' %}" class="nav-item nav-link">Destination</a>
                         <a href="{% url 'package' %}" class="nav-item nav-link">Tour Packages</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu border-0 rounded-0 m-0">
-                                <a href="blog.html" class="dropdown-item">Blog Grid</a>
-                                <a href="single.html" class="dropdown-item">Blog Detail</a>
-                                <a href="{% url 'destination' %}" class="dropdown-item">Destination</a>
-                                <a href="guide.html" class="dropdown-item">Travel Guides</a>
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            </div>
-                        </div>
+                        <a href="{% url 'service' %}" class="nav-item nav-link">Services</a>
                         <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
+                        <a href="{% url 'blog_list' %}" class="nav-item nav-link">Blog</a>
+<!--                        <div class="nav-item dropdown">-->
+<!--                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog</a>-->
+<!--                            <div class="dropdown-menu border-0 rounded-0 m-0">-->
+<!--                                <a href="{% url 'blog_list' %}" class="dropdown-item">Blog List</a>-->
+<!--                                <a href="{% url 'blog_details' %}" class="dropdown-item">Blog Detail</a>-->
+<!--                                <a href="{% url 'about' %}" class="dropdown-item">About</a>-->
+<!--                                <a href="{% url 'guide' %}" class="dropdown-item">Travel Guides</a>-->
+<!--                                <a href="{% url 'testimonial' %}" class="dropdown-item">Testimonial</a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
                     </div>
                 </div>
             </nav>
@@ -190,19 +192,19 @@
 
     <!-- Template Javascript -->
     <script src="{% static 'js/main.js' %}"></script>
- <script>
-const navMenu = document.getElementById('nav-menu');
-const links = navMenu.getElementsByTagName('a');
-console.log("good")
-for (let i = 0; i < links.length; i++)
-{
-  if (links[i].href === window.location.href)
-  {
-    links[i].classList.add('active');
-    break;
-  }
-}
-</script>
+    <script>
+        const navMenu = document.getElementById('nav-menu');
+        const links = navMenu.getElementsByTagName('a');
+        console.log("good")
+        for (let i = 0; i < links.length; i++)
+        {
+          if (links[i].href === window.location.href)
+          {
+            links[i].classList.add('active');
+            break;
+          }
+        }
+    </script>
 </body>
 
 </html>

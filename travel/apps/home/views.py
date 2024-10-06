@@ -21,3 +21,14 @@ class ServicePageView(TemplateView):
 class PackagePageView(TemplateView):
     template_name = 'pages/package.html'
 
+class TestimonialPageView(TemplateView):
+    template_name = 'pages/testimonial.html'
+
+class GuidesPageView(TemplateView):
+    template_name = 'pages/guide.html'
+
+class SigninPageView(TemplateView):
+    template_name = 'pages/sign_in.html'
+
+class SignupPageView(TemplateView):
+    template_name = 'pages/sign_up.html'
