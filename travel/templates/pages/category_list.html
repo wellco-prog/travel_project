@@ -10,8 +10,10 @@
                 <h3 class="display-4 text-white text-uppercase">Blog</h3>
                 <div class="d-inline-flex text-white">
                     <p class="m-0 text-uppercase"><a class="text-white" href="{% url 'home' %}">Home</a></p>
+                    {% for category in category_post %}
                     <i class="fa fa-angle-double-right pt-1 px-3"></i>
-                    <p class="m-0 text-uppercase">Blog</p>
+                    <p class="m-0 text-uppercase">{{ category.name }}</p>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -78,7 +80,7 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="row pb-3">
-                        {% for post in posts %}
+                        {% for post in post_category %}
                         <div class="col-md-6 mb-4 pb-2">
                             <div class="blog-item">
                                 <div class="position-relative">
@@ -237,7 +239,7 @@
                             <nav aria-label="Page navigation">
                                 <ul class="pagination pagination-lg justify-content-center bg-white mb-0" style="padding: 30px;">
                                   {% if page_obj.has_previous %}
-                                    <li class="page-item">
+                                    <li class="page-item disabled">
                                     <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
                                       <span aria-hidden="true">&laquo;</span>
                                       <span class="sr-only">Previous</span>
@@ -258,20 +260,22 @@
                                   <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
                                   {% endif %}
                                     {% endfor %}
+
                                     {% if page_obj.has_next %}
                                     <li class="page-item">
                                     <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
                                       <span aria-hidden="true">&raquo;</span>
                                       <span class="sr-only">Next</span>
                                     </a>
-                                        {% else %}
-                                    <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
+                                   </li>
+                                    {% else %}
+                                    <li class="page-item disabled" >
+                                    <a class="page-link" href="" aria-label="Next">
                                       <span aria-hidden="true">&raquo;</span>
                                       <span class="sr-only">Next</span>
                                     </a>
-                                    {% endif %}
                                   </li>
+                                    {% endif %}
                                 </ul>
                               </nav>
                              {% endif %}
@@ -357,10 +361,10 @@
                         <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Recent Post</h4>
                         {% for last in last_post %}
                         <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="{% url 'blog_details' last.id %}">
-                            <img class="img-fluid" src="{% static 'img/user.jpg'%}" alt="">
+                            <img class="img-fluid" src="#" alt="">
                             <div class="pl-3">
                                 <h6 class="m-1">{{last.title}}</h6>
-                                <small>{{ last.created_at}}</small>
+                                <small>{{ last.created_at }}</small>
                             </div>
                         </a>
                         {% endfor %}
