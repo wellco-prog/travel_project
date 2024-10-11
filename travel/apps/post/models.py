@@ -39,3 +39,17 @@ class Post(models.Model):
     image3 = models.ImageField('Изображение3', upload_to='images/',
                                blank=True, null=True)
     is_active = models.BooleanField('Активно', default=True)
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    author = models.ForeignKey('accounts.User', on_delete=models.CASCADE, null=True)
+    text = models.TextField('Текст')
+    created_at = models.DateTimeField('Дата создания', auto_now_add=True)
+    updated_at = models.DateTimeField('Дата обновления', auto_now=True)
+
+    def __str__(self):
+        return self.text
+
+    class Meta:
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'

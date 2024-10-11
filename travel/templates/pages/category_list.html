@@ -80,23 +80,23 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="row pb-3">
-                        {% for post in post_category %}
+                        {% for category in post_category %}
                         <div class="col-md-6 mb-4 pb-2">
                             <div class="blog-item">
                                 <div class="position-relative">
                                     <img class="img-fluid w-100" src="{% static 'img/blog-1.jpg'%}" alt="">
                                     <div class="blog-date">
-                                        <h6 class="font-weight-bold mb-n1">{{ post.created_at|date:"d" }}</h6>
-                                        <small class="text-white text-uppercase">{{ post.created_at|date:"M" }}</small>
+                                        <h6 class="font-weight-bold mb-n1">{{ category.created_at|date:"d" }}</h6>
+                                        <small class="text-white text-uppercase">{{ category.created_at|date:"M" }}</small>
                                     </div>
                                 </div>
                                 <div class="bg-white p-4">
                                     <div class="d-flex mb-2">
                                         <a class="text-primary text-uppercase text-decoration-none" href="">Admin</a>
                                         <span class="text-primary px-2">|</span>
-                                        <a class="text-primary text-uppercase text-decoration-none" href="">{{ post.category.name }}</a>
+                                        <a class="text-primary text-uppercase text-decoration-none" href="">{{ category.category.name }}</a>
                                     </div>
-                                    <a class="h5 m-0 text-decoration-none" href="{% url 'blog_details' post.id %}">{{ post.title }}</a>
+                                    <a class="h5 m-0 text-decoration-none" href="{% url 'blog_details' category.id %}">{{ category.title }}</a>
                                 </div>
                             </div>
                         </div>
@@ -309,15 +309,18 @@
                     </div>
     
                     <!-- Search Form -->
-                    <div class="mb-5">
+                   <div class="mb-5">
                         <div class="bg-white" style="padding: 30px;">
+                            <form class=input-group" method="get" action='{% url "blog_list" %}'>
                             <div class="input-group">
-                                <input type="text" class="form-control p-4" placeholder="Keyword">
+<!--                                <input type="text" class="form-control p-4" placeholder="Keyword">-->
+                                {{form.query}}
                                 <div class="input-group-append">
                                     <span class="input-group-text bg-primary border-primary text-white"><i
                                             class="fa fa-search"></i></span>
                                 </div>
                             </div>
+                            </form>
                         </div>
                     </div>
 
@@ -388,12 +391,9 @@
                     <div class="mb-5">
                         <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Tag Cloud</h4>
                         <div class="d-flex flex-wrap m-n1">
-                            <a href="" class="btn btn-light m-1">Design</a>
-                            <a href="" class="btn btn-light m-1">Development</a>
-                            <a href="" class="btn btn-light m-1">Marketing</a>
-                            <a href="" class="btn btn-light m-1">SEO</a>
-                            <a href="" class="btn btn-light m-1">Writing</a>
-                            <a href="" class="btn btn-light m-1">Consulting</a>
+                            {% for post_tag in post_tags %}
+                            <a href="{% url 'tag_list' post_tag.slug %}" class="btn btn-light m-1">{{ post_tag.name }}</a>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

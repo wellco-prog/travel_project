@@ -78,23 +78,23 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="row pb-3">
-                        {% for post in posts %}
+                        {% for tag in tags %}
                         <div class="col-md-6 mb-4 pb-2">
                             <div class="blog-item">
                                 <div class="position-relative">
                                     <img class="img-fluid w-100" src="{% static 'img/blog-1.jpg'%}" alt="">
                                     <div class="blog-date">
-                                        <h6 class="font-weight-bold mb-n1">{{ post.created_at|date:"d" }}</h6>
-                                        <small class="text-white text-uppercase">{{ post.created_at|date:"M" }}</small>
+                                        <h6 class="font-weight-bold mb-n1">{{ tag.created_at|date:"d" }}</h6>
+                                        <small class="text-white text-uppercase">{{ tag.created_at|date:"M" }}</small>
                                     </div>
                                 </div>
                                 <div class="bg-white p-4">
                                     <div class="d-flex mb-2">
                                         <a class="text-primary text-uppercase text-decoration-none" href="">Admin</a>
                                         <span class="text-primary px-2">|</span>
-                                        <a class="text-primary text-uppercase text-decoration-none" href="{% url 'category_list' post.category.slug %}">{{ post.category.name }}</a>
+                                        <a class="text-primary text-uppercase text-decoration-none" href="{% url 'category_list' tag.category.slug %}">{{ tag.category.name }}</a>
                                     </div>
-                                    <a class="h5 m-0 text-decoration-none" href="{% url 'blog_details' post.id %}">{{ post.title }}</a>
+                                    <a class="h5 m-0 text-decoration-none" href="{% url 'blog_details' tag.id %}">{{ tag.title }}</a>
                                 </div>
                             </div>
                         </div>
@@ -147,7 +147,6 @@
                     </div>
                 </div>
                 <div class="col-lg-4 mt-5 mt-lg-0">
-
                     <!-- Author Bio -->
                     <div class="d-flex flex-column text-center bg-white mb-5 py-5 px-4">
                         <img src="{% static 'img/user.jpg'%}" class="img-fluid mx-auto mb-3" style="width: 100px;">
@@ -171,7 +170,6 @@
                             </a>
                         </div>
                     </div>
-
                     <!-- Search Form -->
                     <div class="mb-5">
                         <div class="bg-white" style="padding: 30px;">
@@ -187,7 +185,6 @@
                             </form>
                         </div>
                     </div>
-
                     <!-- Category List -->
                     <div class="mb-5">
                         <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Categories</h4>
@@ -222,7 +219,6 @@
                             </ul>
                         </div>
                     </div>
-
                     <!-- Recent Post -->
                     <div class="mb-5">
                         <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Recent Post</h4>
@@ -250,7 +246,6 @@
 <!--                            </div>-->
 <!--                        </a>-->
                     </div>
-
                     <!-- Tag Cloud -->
                     <div class="mb-5">
                         <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Tag Cloud</h4>
