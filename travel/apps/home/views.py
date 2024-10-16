@@ -1,10 +1,25 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
+from ..post.models import Post
+from django.views.generic import ListView
 
 # Create your views here.
 
-class HomePageView(TemplateView):
+class HomePageView(ListView):
     template_name = 'pages/home.html'
+    model = Post
+    context_object_name = 'post1'
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+        # context['categories'] = Category.objects.all()
+        context['last_post1'] = Post.objects.all()[:3]
+        # context['post_tags'] = Tag.objects.all()
+        # context['form'] = SearchForm(self.request.GET)
+        # post = self.get_object()
+        # context['comments'] = Comment.objects.filter(post=post)
+        # context['comment_form'] = CommentsForm()
+        return context
 
 class AboutPageView(TemplateView):
     template_name = 'pages/about.html'
