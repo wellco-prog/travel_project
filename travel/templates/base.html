@@ -46,16 +46,21 @@
                         <a class="text-primary px-3" href="">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-instagram"></i>
-                        </a>
+                        {% if not request.user.is_authenticated %}
                         <a class="text-primary pl-3" href="{% url 'sign_up' %}">
 <!--                            <i class="fab fa-youtube"></i>-->
                             Sign up
                         </a>
+                        <a class="text-primary px-3" href="{% url 'sign_in' %}">
+<!--                            <i class="fab fa-instagram"></i>-->
+                            Sign in
+                        </a>
+                        {% else %}
+                        <a class="text-primary px-3" href="{% url 'logout' %}">
+<!--                            <i class="fab fa-linkedin-in"></i>-->
+                            LogOut
+                        </a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

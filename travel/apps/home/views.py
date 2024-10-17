@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from ..post.models import Post
+from ..accounts.models import User
+from ..accounts.forms import SignUpForm
 from django.views.generic import ListView
+from django.views.generic import CreateView
 
 # Create your views here.
 
@@ -42,8 +45,5 @@ class TestimonialPageView(TemplateView):
 class GuidesPageView(TemplateView):
     template_name = 'pages/guide.html'
 
-class SigninPageView(TemplateView):
-    template_name = 'pages/sign_in.html'
 
-class SignupPageView(TemplateView):
-    template_name = 'pages/sign_up.html'
+

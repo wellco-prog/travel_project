@@ -96,7 +96,7 @@ class BlogDetailPageView(DetailView):
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post = self.get_object()
-            # comment.author = request.user
+            comment.author = request.user
             comment.save()
             return redirect('blog_details', pk=self.get_object().pk)
         return self.render_to_response(self.get_context_data(form=form))

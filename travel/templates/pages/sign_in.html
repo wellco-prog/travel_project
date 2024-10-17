@@ -9,7 +9,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-7 mb-5 mb-lg-0">
                     <div class="mb-4">
-                        <h1 class="text-white" >Welcome back to </h1>
+                        <h1 class="text-white" >Welcome to </h1>
                         <h1 class="text-white" style="text-align: center" ><span class="text-primary"></span>TRAVELER</h1>
                     </div>
                     <p class="text-white"></p>
@@ -23,13 +23,16 @@
                             <form method="post">
                                 {% csrf_token %}
                                 <div class="form-group">
-                                    <input type="text" class="form-control p-4" placeholder="Your username" required="required" />
+                                    {{form.username}}
+<!--                                    <input type="text" class="form-control p-4" placeholder="Your username" required="required" />-->
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control p-4" placeholder="Your email" required="required" />
+                                    {{form.email}}
+<!--                                    <input type="email" class="form-control p-4" placeholder="Your email" required="required" />-->
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control p-4" placeholder="Your password" required="required" />
+                                    {{form.password}}
+<!--                                    <input type="text" class="form-control p-4" placeholder="Your password" required="required" />-->
                                 </div>
                                 <div>
                                     <button class="btn btn-primary btn-block py-3" type="submit">Submit</button>

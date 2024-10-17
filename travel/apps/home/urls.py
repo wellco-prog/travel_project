@@ -10,6 +10,5 @@ urlpatterns = [
     path('package/', PackagePageView.as_view(), name='package'),
     path('testimonial/', TestimonialPageView.as_view(), name='testimonial'),
     path('guide/', GuidesPageView.as_view(), name='guide'),
-    path('sign_in/', SigninPageView.as_view(), name='sign_in'),
-    path('sign_up/', SignupPageView.as_view(), name='sign_up'),
+
 ]
