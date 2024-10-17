@@ -8,7 +8,7 @@ urlpatterns = [
     path('destination/', DestinationPageView.as_view(), name='destination'),
     path('service/', ServicePageView.as_view(), name='service'),
     path('package/', PackagePageView.as_view(), name='package'),
-    path('testimonial/', TestimonialPageView.as_view(), name='testimonial'),
-    path('guide/', GuidesPageView.as_view(), name='guide'),
+    # path('testimonial/', TestimonialPageView.as_view(), name='testimonial'),
+    # path('guide/', GuidesPageView.as_view(), name='guide'),
 
 ]
