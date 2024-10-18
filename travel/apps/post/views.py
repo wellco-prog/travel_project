@@ -89,6 +89,7 @@ class BlogDetailPageView(DetailView):
         post = self.get_object()
         context['comments'] = Comment.objects.filter(post=post)
         context['comment_form'] = CommentsForm()
+        context['comments_count'] = Comment.objects.filter(post=post).count()
         return context
 
     def post(self, request, *args, **kwargs):
