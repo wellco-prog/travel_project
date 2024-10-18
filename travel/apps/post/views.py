@@ -5,7 +5,7 @@ from django.views.generic import ListView, DetailView
 from .models import Post, Category, Tag, Comment
 from django.db.models import Q
 from .forms import SearchForm, CommentsForm
-# from .forms import CommentForm
+# from .for import CommentForm
 # Create your views here.
 
 class CategoryListView(ListView):

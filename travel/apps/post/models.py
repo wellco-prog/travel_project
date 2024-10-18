@@ -40,6 +40,9 @@ class Post(models.Model):
                                blank=True, null=True)
     is_active = models.BooleanField('Активно', default=True)
 
+    def __str__(self):
+        return self.title
+
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
     author = models.ForeignKey('accounts.User', on_delete=models.CASCADE, null=True)

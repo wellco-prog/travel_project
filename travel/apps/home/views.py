@@ -1,8 +1,23 @@
 from django.views.generic import TemplateView
 from ..post.models import Post
-from django.views.generic import ListView
+from .models import Contact
+from django.views.generic import ListView, CreateView
+from .forms import ContactForm
 
 # Create your views here.
+
+
+class ContactPageView(CreateView):
+    template_name = 'pages/contact.html'
+    model = Contact
+    context_object_name = 'contact'
+    form_class = ContactForm
+    success_url = '/contact'
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['contact'] = ContactForm()
+    #     return context
 
 class HomePageView(ListView):
     template_name = 'pages/home.html'
@@ -17,8 +32,6 @@ class HomePageView(ListView):
 class AboutPageView(TemplateView):
     template_name = 'pages/about.html'
 
-class ContactPageView(TemplateView):
-    template_name = 'pages/contact.html'
 
 class DestinationPageView(TemplateView):
     template_name = 'pages/destination.html'
