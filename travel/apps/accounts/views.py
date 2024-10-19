@@ -9,12 +9,13 @@ class SignupPageView(CreateView):
     template_name = 'pages/sign_up.html'
     model = User
     form_class = SignUpForm
-    success_url = '/'
+    success_url = '/packages/'
 
 class SignInView(FormView):
     model = User
     form_class = SignInForm
     template_name = 'pages/sign_in.html'
+
     def form_valid(self, form):
         cleaned_data = form.cleaned_data
         username = cleaned_data.get('username')
@@ -28,7 +29,7 @@ class SignInView(FormView):
         if user is not None:
             if user.is_active:
                 login(self.request, user)
-                return redirect('home')
+                return redirect('packages')
             else:
                 return HttpResponse('Disabled account')
         else: HttpResponse('Invalid login')
