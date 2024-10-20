@@ -8,7 +8,7 @@
     <div class="container-fluid page-header">
         <div class="container">
             <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
-                <h3 class="display-4 text-white text-uppercase">About Destination</h3>
+                <h3 class="display-4 text-white text-uppercase">Book Tour Packages</h3>
                 <div class="d-inline-flex text-white">
                     <p class="m-0 text-uppercase"><a class="text-white" href="{% url 'home' %}">Home</a></p>
                     <i class="fa fa-angle-double-right pt-1 px-3"></i>
@@ -78,66 +78,217 @@
         <div class="container pt-5 pb-3">
             <div class="text-center mb-3 pb-3">
                 <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;"></h6>
-                <h1>Explore Top Destination</h1>
+                <h1>Explore Tour Destination</h1>
             </div>
             <div class="row">
+                {% for dest in destinations %}
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="destination-item position-relative overflow-hidden mb-2">
-                        <img class="img-fluid" src="{% static 'img/destination-1.jpg'%}" alt="">
-                        <a class="destination-overlay text-white text-decoration-none" href="">
-                            <h5 class="text-white">United States</h5>
-                            <span>100 Cities</span>
+                        <img class="img-fluid" src="{{dest.image.url}}" alt="">
+                        <a class="destination-overlay text-white text-decoration-none" href="{% url 'package' dest.slug %}">
+                            <h5 class="text-white">{{ dest.name }}</h5>
+<!--                            <span>100 Cities</span>-->
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="destination-item position-relative overflow-hidden mb-2">
-                        <img class="img-fluid" src="{% static 'img/destination-2.jpg'%}" alt="">
-                        <a class="destination-overlay text-white text-decoration-none" href="">
-                            <h5 class="text-white">United Kingdom</h5>
-                            <span>100 Cities</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="destination-item position-relative overflow-hidden mb-2">
-                        <img class="img-fluid" src="{% static 'img/destination-3.jpg'%}" alt="">
-                        <a class="destination-overlay text-white text-decoration-none" href="">
-                            <h5 class="text-white">Australia</h5>
-                            <span>100 Cities</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="destination-item position-relative overflow-hidden mb-2">
-                        <img class="img-fluid" src="{% static 'img/destination-4.jpg'%}" alt="">
-                        <a class="destination-overlay text-white text-decoration-none" href="">
-                            <h5 class="text-white">India</h5>
-                            <span>100 Cities</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="destination-item position-relative overflow-hidden mb-2">
-                        <img class="img-fluid" src="{% static 'img/destination-5.jpg'%}" alt="">
-                        <a class="destination-overlay text-white text-decoration-none" href="">
-                            <h5 class="text-white">South Africa</h5>
-                            <span>100 Cities</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="destination-item position-relative overflow-hidden mb-2">
-                        <img class="img-fluid" src="{% static 'img/destination-6.jpg'%}" alt="">
-                        <a class="destination-overlay text-white text-decoration-none" href="">
-                            <h5 class="text-white">Indonesia</h5>
-                            <span>100 Cities</span>
-                        </a>
-                    </div>
-                </div>
+                {% endfor %}
+<!--                <div class="col-lg-4 col-md-6 mb-4">-->
+<!--                    <div class="destination-item position-relative overflow-hidden mb-2">-->
+<!--                        <img class="img-fluid" src="{% static 'img/destination-2.jpg'%}" alt="">-->
+<!--                        <a class="destination-overlay text-white text-decoration-none" href="">-->
+<!--                            <h5 class="text-white">United Kingdom</h5>-->
+<!--                            <span>100 Cities</span>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-lg-4 col-md-6 mb-4">-->
+<!--                    <div class="destination-item position-relative overflow-hidden mb-2">-->
+<!--                        <img class="img-fluid" src="{% static 'img/destination-3.jpg'%}" alt="">-->
+<!--                        <a class="destination-overlay text-white text-decoration-none" href="">-->
+<!--                            <h5 class="text-white">Australia</h5>-->
+<!--                            <span>100 Cities</span>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-lg-4 col-md-6 mb-4">-->
+<!--                    <div class="destination-item position-relative overflow-hidden mb-2">-->
+<!--                        <img class="img-fluid" src="{% static 'img/destination-4.jpg'%}" alt="">-->
+<!--                        <a class="destination-overlay text-white text-decoration-none" href="">-->
+<!--                            <h5 class="text-white">India</h5>-->
+<!--                            <span>100 Cities</span>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-lg-4 col-md-6 mb-4">-->
+<!--                    <div class="destination-item position-relative overflow-hidden mb-2">-->
+<!--                        <img class="img-fluid" src="{% static 'img/destination-5.jpg'%}" alt="">-->
+<!--                        <a class="destination-overlay text-white text-decoration-none" href="">-->
+<!--                            <h5 class="text-white">South Africa</h5>-->
+<!--                            <span>100 Cities</span>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-lg-4 col-md-6 mb-4">-->
+<!--                    <div class="destination-item position-relative overflow-hidden mb-2">-->
+<!--                        <img class="img-fluid" src="{% static 'img/destination-6.jpg'%}" alt="">-->
+<!--                        <a class="destination-overlay text-white text-decoration-none" href="">-->
+<!--                            <h5 class="text-white">Indonesia</h5>-->
+<!--                            <span>100 Cities</span>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </div>
     </div>
-    <!-- Destination Start -->
+    <!-- Destination End -->
+
+    <!-- Team Start -->
+    <div class="container-fluid py-3">
+        <div class="container pt-3 pb-3">
+            <div class="text-center mb-3 pb-3">
+                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Guides</h6>
+                <h1>Our Travel Guides</h1>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
+                    <div class="team-item bg-white mb-4">
+                        <div class="team-img position-relative overflow-hidden">
+                            <img class="img-fluid w-100" src="{% static 'img/team-1.jpg'%}" alt="">
+                            <div class="team-social">
+                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center py-4">
+                            <h5 class="text-truncate">Guide Name</h5>
+                            <p class="m-0">Designation</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
+                    <div class="team-item bg-white mb-4">
+                        <div class="team-img position-relative overflow-hidden">
+                            <img class="img-fluid w-100" src="{% static 'img/team-2.jpg'%}" alt="">
+                            <div class="team-social">
+                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center py-4">
+                            <h5 class="text-truncate">Guide Name</h5>
+                            <p class="m-0">Designation</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
+                    <div class="team-item bg-white mb-4">
+                        <div class="team-img position-relative overflow-hidden">
+                            <img class="img-fluid w-100" src="{% static 'img/team-3.jpg'%}" alt="">
+                            <div class="team-social">
+                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center py-4">
+                            <h5 class="text-truncate">Guide Name</h5>
+                            <p class="m-0">Designation</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
+                    <div class="team-item bg-white mb-4">
+                        <div class="team-img position-relative overflow-hidden">
+                            <img class="img-fluid w-100" src="{% static 'img/team-4.jpg'%}" alt="">
+                            <div class="team-social">
+                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center py-4">
+                            <h5 class="text-truncate">Guide Name</h5>
+                            <p class="m-0">Designation</p>
+                        </div>
+                    </div>
+                </div>
+<!--                <div class="col-lg-3 col-md-4 col-sm-6 pb-2">-->
+<!--                    <div class="team-item bg-white mb-4">-->
+<!--                        <div class="team-img position-relative overflow-hidden">-->
+<!--                            <img class="img-fluid w-100" src="{% static 'img/team-1.jpg'%}" alt="">-->
+<!--                            <div class="team-social">-->
+<!--                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>-->
+<!--                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-facebook-f"></i></a>-->
+<!--                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-instagram"></i></a>-->
+<!--                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="text-center py-4">-->
+<!--                            <h5 class="text-truncate">Guide Name</h5>-->
+<!--                            <p class="m-0">Designation</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-lg-3 col-md-4 col-sm-6 pb-2">-->
+<!--                    <div class="team-item bg-white mb-4">-->
+<!--                        <div class="team-img position-relative overflow-hidden">-->
+<!--                            <img class="img-fluid w-100" src="{% static 'img/team-2.jpg'%}" alt="">-->
+<!--                            <div class="team-social">-->
+<!--                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>-->
+<!--                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-facebook-f"></i></a>-->
+<!--                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-instagram"></i></a>-->
+<!--                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="text-center py-4">-->
+<!--                            <h5 class="text-truncate">Guide Name</h5>-->
+<!--                            <p class="m-0">Designation</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-lg-3 col-md-4 col-sm-6 pb-2">-->
+<!--                    <div class="team-item bg-white mb-4">-->
+<!--                        <div class="team-img position-relative overflow-hidden">-->
+<!--                            <img class="img-fluid w-100" src="{% static 'img/team-3.jpg'%}" alt="">-->
+<!--                            <div class="team-social">-->
+<!--                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>-->
+<!--                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-facebook-f"></i></a>-->
+<!--                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-instagram"></i></a>-->
+<!--                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="text-center py-4">-->
+<!--                            <h5 class="text-truncate">Guide Name</h5>-->
+<!--                            <p class="m-0">Designation</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-lg-3 col-md-4 col-sm-6 pb-2">-->
+<!--                    <div class="team-item bg-white mb-4">-->
+<!--                        <div class="team-img position-relative overflow-hidden">-->
+<!--                            <img class="img-fluid w-100" src="{% static 'img/team-4.jpg'%}" alt="">-->
+<!--                            <div class="team-social">-->
+<!--                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>-->
+<!--                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-facebook-f"></i></a>-->
+<!--                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-instagram"></i></a>-->
+<!--                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="text-center py-4">-->
+<!--                            <h5 class="text-truncate">Guide Name</h5>-->
+<!--                            <p class="m-0">Designation</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+            </div>
+        </div>
+    </div>
+    <!-- Team End -->
 
 {% endblock %}

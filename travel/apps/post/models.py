@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Category(models.Model):
     name = models.CharField('Название категории', max_length=100, unique=True)
     slug = models.SlugField('Slug', unique=True)
@@ -10,6 +11,7 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
+
 
 class Tag(models.Model):
     name = models.CharField('Название тэга', max_length=100, unique=True)
@@ -42,6 +44,7 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')

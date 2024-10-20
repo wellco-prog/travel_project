@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 	'apps.home',
 	'apps.accounts',
     'apps.post',
+    'apps.booking'
 	
 ]
 

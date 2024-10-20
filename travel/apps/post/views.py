@@ -41,7 +41,7 @@ class TagListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categories'] = Category.objects.all()
+        context['categories'] = Category.objects.annotate(num_posts=Count('post'))
         context['last_post'] = Post.objects.all()[:3]
         context['post_tags'] = Tag.objects.all()
         context['form'] = SearchForm(self.request.GET)
