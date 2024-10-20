@@ -5,6 +5,8 @@ from django.views.generic import ListView, DetailView
 from .models import Post, Category, Tag, Comment
 from django.db.models import Q
 from .forms import SearchForm, CommentsForm
+from django.db.models import Count
+
 # from .for import CommentForm
 # Create your views here.
 
@@ -22,7 +24,7 @@ class CategoryListView(ListView):
         context = super().get_context_data(**kwargs)
         context['category_post'] = Category.objects.filter(
             slug=self.kwargs['slug'])
-        context['categories'] = Category.objects.all()
+        context['categories'] = Category.objects.annotate(num_posts=Count('post'))
         context['last_post'] = Post.objects.all()[:3]
         context['post_tags'] = Tag.objects.all()
         context['form'] = SearchForm(self.request.GET)
@@ -66,7 +68,7 @@ class BlogListPageView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categories'] = Category.objects.all() # categories указываем в html в цикле For для листинга категорий
+        context['categories'] = Category.objects.annotate(num_posts=Count('post')) # categories указываем в html в цикле For для листинга категорий
         context['last_post'] = Post.objects.all()[:3] # last_post указываем в html в цикле For для листинга категорий
         context['post_tags'] = Tag.objects.all() # last_post указываем в html в цикле For для листинга категорий
         context['form'] = SearchForm(self.request.GET)
@@ -80,16 +82,17 @@ class BlogDetailPageView(DetailView):
     context_object_name = 'post'
 
     def get_context_data(self, **kwargs):
-
+        post = self.get_object()
         context = super().get_context_data(**kwargs)
-        context['categories'] = Category.objects.all()
+        context['categories'] = Category.objects.annotate(num_posts=Count('post'))
         context['last_post'] = Post.objects.all()[:3]
         context['post_tags'] = Tag.objects.all()
         context['form'] = SearchForm(self.request.GET)
-        post = self.get_object()
+
         context['comments'] = Comment.objects.filter(post=post)
         context['comment_form'] = CommentsForm()
         context['comments_count'] = Comment.objects.filter(post=post).count()
+        # context['categories_count'] = Category.objects.filter(post=post).count()
         return context
 
     def post(self, request, *args, **kwargs):
