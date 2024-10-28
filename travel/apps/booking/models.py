@@ -27,6 +27,7 @@ class Package(models.Model):
     personsCount = models.IntegerField('Количество Человек')
     price = models.IntegerField('Цена')
     offer = models.BooleanField(default=False)
+    from_date = models.DateField('from_date', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
