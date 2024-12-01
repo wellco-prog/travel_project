@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.timezone import now
 
 
 # Create your models here.
@@ -27,9 +28,22 @@ class Package(models.Model):
     personsCount = models.IntegerField('Количество Человек')
     price = models.IntegerField('Цена')
     offer = models.BooleanField(default=False)
-    from_date = models.DateField('from_date', blank=True, null=True)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.naming
+
+
+
+
+class  Order(models.Model):
+    package = models.ForeignKey(Package, on_delete=models.CASCADE)
+    from_date = models.DateField('from_date', null=True)
+    user = models.ForeignKey('accounts.User', on_delete=models.CASCADE, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.package.naming

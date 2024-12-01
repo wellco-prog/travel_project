@@ -8,7 +8,7 @@
     <div class="container-fluid page-header">
         <div class="container">
             <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
-                <h3 class="display-4 text-white text-uppercase">Book Tour Packages</h3>
+                <h3 class="display-4 text-white text-uppercase">Tour Destination</h3>
                 <div class="d-inline-flex text-white">
                     <p class="m-0 text-uppercase"><a class="text-white" href="{% url 'home' %}">Home</a></p>
                     <i class="fa fa-angle-double-right pt-1 px-3"></i>
@@ -81,11 +81,11 @@
                 <h1>Explore Tour Destination</h1>
             </div>
             <div class="row">
-                {% for dest in destinations %}
+                {% for dest in destination %}
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="destination-item position-relative overflow-hidden mb-2">
                         <img class="img-fluid" src="{{dest.image.url}}" alt="">
-                        <a class="destination-overlay text-white text-decoration-none" href="{% url 'package' dest.slug %}">
+                        <a href="{% url 'packaging' %}" class="destination-overlay text-white text-decoration-none" >
                             <h5 class="text-white">{{ dest.name }}</h5>
 <!--                            <span>100 Cities</span>-->
                         </a>

@@ -1,19 +1,27 @@
 from  django import forms
-from .models import Package, Destination
+from .models import Package, Order
 
 class BookingForm(forms.ModelForm):
-    # naming = forms.ChoiceField (widget=forms.Select, choices=())
-    naming = forms.ModelChoiceField (queryset= Package.objects.all(), widget=forms.Select (attrs={'placeholder': 'Пакет', 'class': 'form-control'}))
-    from_date = forms.DateField(widget=forms.NumberInput (attrs={'type':'date','class': 'form-control'}))
+    package = forms.ModelChoiceField (queryset= Package.objects.all(), widget=forms.Select (attrs={'class': 'form-control', 'required': 'required'}))
+    from_date = forms.DateField(widget=forms.NumberInput (attrs={'type':'date','class': 'form-control', 'required': 'required'}))
     class Meta:
-        model = Package
-        fields = ['naming', 'from_date', 'daysCount']
-        widgets = {
-            # 'naming': forms.Select(attrs={'class': 'form-control'}),
-            # 'from_date': forms.DateField(attrs={'placeholder': 'from_date','class': 'form-control'}),
-            'daysCount': forms.NumberInput(attrs={'placeholder': 'daysCount','class': 'form-control'}),
-
-        }
+        model = Order
+        fields = ['package', 'from_date']
+    # def clean_from_date(self):
+    #     data = self.cleaned_data['from_date']
+    #     if not data:
+    #         raise forms.ValidationError("Выберите дату!")
+    #     return data
+# class BookingForm(forms.ModelForm):
+#     naming = forms.ChoiceField(
+#         choices=[(package.id, package.naming) for package in Package.objects.all()],
+#         widget=forms.Select(attrs={'placeholder': 'Пакет', 'class': 'form-control'})
+#     )
+#     from_date = forms.DateField(widget=forms.NumberInput(attrs={'type': 'date', 'class': 'form-control'}))
+#
+#     class Meta:
+#         model = Order
+#         fields = ['naming', 'from_data']
 
 
     # def __init__(self, *args, **kwargs):

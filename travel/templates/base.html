@@ -56,6 +56,11 @@
                             Sign in
                         </a>
                         {% else %}
+                        <!-- For POST method -->
+<!--                        <form method="post" action="{% url 'logout' %}">-->
+<!--                        {% csrf_token %}-->
+<!--                        <button type="submit">Logout</button>-->
+<!--                        </form>-->
                         <a class="text-primary px-3" href="{% url 'logout' %}">
 <!--                            <i class="fab fa-linkedin-in"></i>-->
                             LogOut
@@ -83,7 +88,7 @@
                     <div id="nav-menu" class="navbar-nav ml-auto py-0">
                         <a href="{% url 'home' %}" class="nav-item nav-link">Home</a>
                         <a href="{% url 'destination' %}" class="nav-item nav-link">Destination</a>
-<!--                        <a href="" class="nav-item nav-link">Tour Packages</a>-->
+                        <a href="{% url 'packaging' %}" class="nav-item nav-link">Tour Packages</a>
                         <a href="{% url 'service' %}" class="nav-item nav-link">Services</a>
                         <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
                         <a href="{% url 'blog_list' %}" class="nav-item nav-link">Blog</a>
@@ -130,7 +135,7 @@
                     <a class="text-white-50 mb-2" href="{% url 'contact' %}"><i class="fa fa-angle-right mr-2"></i>Contact</a>
                     <a class="text-white-50 mb-2" href="{% url 'destination' %}"><i class="fa fa-angle-right mr-2"></i>Destination</a>
                     <a class="text-white-50 mb-2" href="{% url 'service' %}"><i class="fa fa-angle-right mr-2"></i>Services</a>
-<!--                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Packages</a>-->
+                    <a class="text-white-50 mb-2" href="{% url 'packaging' %}"><i class="fa fa-angle-right mr-2"></i>Packages</a>
 <!--                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Guides</a>-->
 <!--                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Testimonial</a>-->
                     <a class="text-white-50" href="{% url 'blog_list' %}"><i class="fa fa-angle-right mr-2"></i>Blog</a>
@@ -211,6 +216,30 @@
           }
         }
     </script>
+<script>
+    document.querySelector('#submit-button').addEventListener('click', function(e) {
+        e.preventDefault();
+        let formData = new FormData(document.querySelector('#order'));
+
+        fetch('/package/', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}' // Не забудьте про CSRF-токен
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                alert(data.message);
+            }
+            else if (data.status === 'error') {
+                alert(data.message)
+            }
+        })
+        .catch(error => console.error('Ошибка:', error));
+    });
+</script>
 </body>
 
 </html>

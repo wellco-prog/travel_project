@@ -1,6 +1,7 @@
 from django.views.generic import TemplateView
 from ..post.models import Post
 from .models import Contact
+from ..booking.models import Package
 from django.views.generic import ListView, CreateView
 from .forms import ContactForm
 
@@ -39,8 +40,14 @@ class DestinationPageView(TemplateView):
 class ServicePageView(TemplateView):
     template_name = 'pages/service.html'
 
-class PackagePageView(TemplateView):
+# class PackagePageView(TemplateView):
+#     template_name = 'pages/package.html'
+
+class PackageListView(ListView):
+    model = Package
     template_name = 'pages/package.html'
+    context_object_name = 'packages'
+    paginate_by = 3
 
 class TestimonialPageView(TemplateView):
     template_name = 'pages/testimonial.html'
